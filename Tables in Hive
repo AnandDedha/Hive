@@ -1,0 +1,40 @@
+********************* TABLE TYPE AND ITS USAGE *************************
+1 Internal Tables
+2 External Tables
+
+
+** Internal tables **
+
+	- Internal Table is tightly coupled in nature.In this type of table, first we have to create table and load the data.
+	- We can call this one as data on schema.
+	- By dropping this table, both data and schema will be removed.
+	- The stored location of this table will be at /user/hive/warehouse.
+
+When to Choose Internal Table:
+
+	- If the processing data available in local file system
+	- If we want Hive to manage the complete life cycle of data including the deletion
+
+	
+Sample code snippet
+// To create the Table 
+
+CREATE TABLE hive_internaltable (id INT,Name STRING);
+	 Row format delimited 
+	 Fields terminated by '\t';
+
+//Load the data into the table
+
+LOAD DATA INPATH '/user/guru99hive/data.txt' INTO table guruhive_internaltable;	 
+
+
+** External tables **
+
+	- External Table is loosely coupled in nature. Data will be available in HDFS.The table is going to create on HDFS data.
+	- In other way, we can say like its creating schema on data.
+	- At the time of dropping the table it drops only schema, the data will be still available in HDFS as before.
+	- External tables provide an option to create multiple schema's for the data stored in HDFS instead of deleting the data every time whenever schema updates
+When to Choose External Table:
+
+	- If processing data available in HDFS
+	- Useful when the files are being used outside of Hive
