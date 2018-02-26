@@ -1,0 +1,42 @@
+
+******** Database *******
+//CREATING DATABASE
+Create database AC_DB;   //Create a database
+Create database AC_DB with DBPROPERTIES ( 'creator'= 'Anand' , 'Creation_date' = '25-02-2018') // Creating database with properties
+
+describe database AC_DB; //Meta data about the database
+
+//DROOPING DATABASE
+drop database if exists AC_DB Cascade;  // Drop the database including it's table
+
+
+
+******** Table ********
+//CREATING TABLE
+Create Table AC_DB_First_Table(
+Id INT,
+Name STRING,
+City STRING,
+Country STRING)
+row format delimited fields terminated by ',';
+
+
+CREATE TABLE AC_DB_Second_Table(
+Id INT,
+Country STRING) STORED AS ORC; 
+
+//Load the data into the table 
+LOAD DATA LOCAL INPATH 'File_Path' into table AC_DB_First_Table
+
+// ALTERING TABLE
+
+Alter table AC_DB_Second_Table RENAME to AC_DB_Third_Table;
+
+// DROPPING TABLE
+drop table AC_DB_Third_Table;
+
+
+
+
+
+
